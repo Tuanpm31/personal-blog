@@ -6,17 +6,17 @@ tags:
   - Programing
   - Python
   - Flask
-banner: ./scheduled-job-by-specific-time-with-flask-banner.jpeg
+banner: ./scheduled-job-by-specific-time-with-flask-banner.jpg
 ---
 
 ## Cron Job
 
 **What is cron job?** a *cron job* is a linux command used for scheduling tasks to be executed in specific time in future. It's normally used to schedule a job that is executed periodically.
 
-But today we will talk about how to scheduled a job to run in specific time in future with python and flask framework
+This post will discuss about how to schedule a job to run in specific time in future with python and flask framework
 
 ##  Cron Job with Python
-We will use python library [APScheduler](https://apscheduler.readthedocs.io/en/latest/userguide.html) to quick start and easy to scalable way to schedule running task
+We will use python library [APScheduler](https://apscheduler.readthedocs.io/en/latest/userguide.html) to start more quickly and schedule running task easily
 
 **First**, install dependencies
 ```bash
@@ -29,7 +29,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, date, time
 ```
 
-*Create an instance of BackgroundScheduler, and create some func to executed*
+*Create an instance of BackgroundScheduler, and create some func to execute task*
 ```python
 schedule = BackgroundScheduler()
 
@@ -59,7 +59,7 @@ for task_date, task_time, frequency in tasks_list:
 schedule.start()
 ```
 
-Very simple, we have two case above, it's trigger by "interval" or "date"
+It's quite simple, we have two cases above, they are triggered by "interval" or "date"
 I'll explain them:
 1. **Interval** (action will trigger intervals) with many params like:
   - weeks *(int)* – number of weeks to wait
@@ -71,8 +71,8 @@ I'll explain them:
   - end_date *(datetime|str)* – latest possible date/time to trigger on
   - timezone *(datetime.tzinfo|str)* – time zone to use for the date/time calculations
 
-  **In example above**, i'm using trigger by interval every day, it will run daily_job, you can try it with hours, seconds, etc...
-  You can also specify starting date and ending dates for the schedule through ```start_date``` and ```end_date``` parameters
+  **In the example above**, i trigger it by interval, it will run function daily_job, you can try it with different params such as hours, seconds, etc...
+  You can also specify starting date and ending date for the schedule through ```start_date``` and ```end_date``` parameters
 
 2. **Date**(Triggers once on the given datetime by ```run_date``` param), others params:
   - run_date *(datetime|str)* – the date/time to run the job at
@@ -81,7 +81,7 @@ I'll explain them:
   If ```run_date``` is empty, it will use current time
   ```time_zone``` use for specify time zone
 
-**With Flask**
+## With Flask
 With flask, we can use [Flask-APScheduler](https://github.com/viniciuschiele/flask-apscheduler), it's a Flask entension which adds support for the APScheduler
 
 **Installation**
@@ -114,7 +114,7 @@ def scheduler_task_2():
   print("scheduled task 2")
 ```
 
-**To add more task, we create route, we can provide body like input time, type of run, but in example, i just create a new normal task when request to /add:
+**To add more tasks, we create route, we can provide body like input time, type of run. For example, i just create a new normal task when being requested to /add:**
 ```python
 @app.route('/add')
 def add_job():
